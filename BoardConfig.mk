@@ -14,16 +14,16 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/samsung/a72q
+LOCAL_PATH := device/samsung/a42xq
 
-include device/samsung/sm7125-common/BoardConfigCommon.mk
+include device/samsung/sm7225-common/BoardConfigCommon.mk
 
 # Kernel
-TARGET_KERNEL_CONFIG        := vendor/lineage-a72q_defconfig
+TARGET_KERNEL_CONFIG        := vendor/a42xq_eur_open_defconfig
 BOARD_NAME                  := SRPTJ06B001
 
 # Display
 TARGET_SCREEN_DENSITY := 450
 
 # OTA assert
-TARGET_OTA_ASSERT_DEVICE := a72q
+TARGET_OTA_ASSERT_DEVICE := a42xq
