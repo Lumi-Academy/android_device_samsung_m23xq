@@ -1,4 +1,5 @@
-# Copyright (c) 2013-2018,2020, The Linux Foundation. All rights reserved.
+
+# Copyright (c) 2018-2019, The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
@@ -26,9 +27,35 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 #
+
 on post-fs-data
-    # MST/NFC Switch
-    chmod 0660 /dev/mst_ctrl
+    
+# Samsung Pay
+    mkdir /efs/pfw_data 0760 vendor_spay vendor_spay
+
+# MST/NFC Switch
+    chown vendor_spay system /dev/mst_ctrl
+    chmod 0660 /dev/mst_ctrl    
+
+# Fingerprint sensor
+    chmod 0660 /dev/esfp0
+    chown system system /dev/esfp0
+
+    chown system radio /sys/class/fingerprint/fingerprint/type_check
+    chown system radio /sys/class/fingerprint/fingerprint/name
+    chown system radio /sys/class/fingerprint/fingerprint/vendor
+    chown system radio /sys/class/fingerprint/fingerprint/adm
+    chown system radio /sys/class/fingerprint/fingerprint/bfs_values
+    chown system radio /sys/class/fingerprint/fingerprint/hbm
+    chown system radio /sys/class/fingerprint/fingerprint/position
+    chown system radio /sys/class/fingerprint/fingerprint/intcnt
+    chown system radio /sys/class/fingerprint/fingerprint/resetcnt
+    chown system radio /sys/class/fingerprint/fingerprint/rb
+
+    mkdir /data/vendor/biometrics 0770 system system
+    mkdir /data/vendor/fpSnrTest 0770 system system
+    mkdir /efs/biometrics 0770 system system
+    mkdir /efs/biometrics/meta 0770 system system
 
 # setup cgroup freezer for freecess
     mkdir /dev/freezer
@@ -71,29 +98,30 @@ on boot
     mkdir /dev/cpuset/abnormal
     write /dev/cpuset/abnormal/cpus 0-3
     copy /dev/cpuset/mems /dev/cpuset/abnormal/mems
-
     chown system system /dev/cpuset/abnormal
     chown system system /dev/cpuset/abnormal/tasks
     chown system system /dev/cpuset/abnormal/cpus
     chmod 0664 /dev/cpuset/abnormal/tasks
     chmod 0664 /dev/cpuset/abnormal/cpus
 
-# SSWAP
-    write /proc/sys/vm/swappiness 130
+    mkdir /dev/cpuset/moderate
+    write /dev/cpuset/moderate/cpus 0-2,4-6
+    copy /dev/cpuset/mems /dev/cpuset/moderate/mems
 
-# Permissions for booster
-    chown root system /sys/class/kgsl/kgsl-3d0/min_pwrlevel
-    chown root system /sys/class/kgsl/kgsl-3d0/max_pwrlevel
-    chown root system /sys/class/kgsl/kgsl-3d0/gpu_available_frequencies
-    chmod 0664 /sys/class/kgsl/kgsl-3d0/min_pwrlevel
-    chmod 0664 /sys/class/kgsl/kgsl-3d0/max_pwrlevel
-    chmod 0664 /sys/class/kgsl/kgsl-3d0/gpu_available_frequencies
-    chown radio system /sys/power/cpufreq_min_limit
-    chmod 0664 /sys/power/cpufreq_min_limit
-    chown radio system /sys/power/cpufreq_max_limit
-    chmod 0664 /sys/power/cpufreq_max_limit
-    chown radio system /sys/power/cpufreq_table
-    chmod 444 /sys/power/cpufreq_table
+    chown system system /dev/cpuset/moderate
+    chown system system /dev/cpuset/moderate/tasks
+    chown system system /dev/cpuset/moderate/cpus
+    chmod 0664 /dev/cpuset/moderate/tasks
+    chmod 0664 /dev/cpuset/moderate/cpus
+
+# Performance
+    chown system radio /sys/class/devfreq/soc:qcom,cpu6-cpu-ddr-latfloor/available_frequencies
+    chmod 0664 /sys/class/devfreq/soc:qcom,cpu6-cpu-ddr-latfloor/available_frequencies
+
+# SSWAP with SQZR
+on boot
+    write /proc/sys/vm/swappiness 160
+    write /proc/sys/vm/page-cluster 0
 
 # Pageboostd
 on property:sys.boot_completed=1
@@ -105,3 +133,9 @@ service pageboostd /system/bin/pageboostd
     group system mount radio net_bt sdcard_rw shell media media_rw
     socket pageboostd seqpacket 0660 system system
     disabled
+
+# Remosaic daemon works with cameraserver
+service remosaic_daemon /vendor/bin/remosaic_daemon
+    class core
+    user camera
+    group camera
