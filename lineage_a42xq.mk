@@ -32,14 +32,14 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 # Boot animation
 TARGET_BOOTANIMATION_PRELOAD := true
 TARGET_BOOTANIMATION_TEXTURE_CACHE := true
-TARGET_SCREEN_HEIGHT := 2400
-TARGET_SCREEN_WIDTH := 1080
+TARGET_SCREEN_HEIGHT := 1600
+TARGET_SCREEN_WIDTH := 720
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_NAME := lineage_a42xq
 PRODUCT_DEVICE := a42xq
 PRODUCT_BRAND := samsung
-PRODUCT_MODEL := SM-A725F
+PRODUCT_MODEL := SM-A426B
 PRODUCT_MANUFACTURER := samsung
 PRODUCT_GMS_CLIENTID_BASE := android-samsung
 

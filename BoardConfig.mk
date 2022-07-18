@@ -20,10 +20,10 @@ include device/samsung/sm7225-common/BoardConfigCommon.mk
 
 # Kernel
 TARGET_KERNEL_CONFIG        := vendor/a42xq_eur_open_defconfig
-BOARD_NAME                  := SRPTJ06B001
+BOARD_NAME                  := SRPTF23D003
 
 # Display
-TARGET_SCREEN_DENSITY := 450
+TARGET_SCREEN_DENSITY := 300
 
 # OTA assert
 TARGET_OTA_ASSERT_DEVICE := a42xq
