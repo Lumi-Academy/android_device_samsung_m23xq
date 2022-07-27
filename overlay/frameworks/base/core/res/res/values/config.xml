@@ -44,7 +44,7 @@
     <!-- The properties of a UDFPS sensor in pixels, in the order listed below: -->
     <integer-array name="config_udfps_sensor_props">
         <item>360</item>
-        <item>1460</item>
-        <item>90</item>
+        <item>1465</item>
+        <item>70</item>
     </integer-array>
 </resources>
