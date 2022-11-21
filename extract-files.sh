@@ -7,7 +7,7 @@
 
 set -e
 
-DEVICE_COMMON=a42xq
+DEVICE_COMMON=m23xq
 VENDOR=samsung
 
 # Load extractutils and do some sanity checks

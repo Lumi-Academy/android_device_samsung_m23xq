@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/samsung/a42xq
+LOCAL_PATH := device/samsung/m23xq
 
 include device/samsung/sm7225-common/BoardConfigCommon.mk
 
@@ -23,7 +23,7 @@ TARGET_KERNEL_CONFIG        := vendor/a42xq_eur_open_defconfig
 BOARD_NAME                  := SRPTF23D003
 
 # Display
-TARGET_SCREEN_DENSITY := 300
+TARGET_SCREEN_DENSITY := 411
 
 # OTA assert
-TARGET_OTA_ASSERT_DEVICE := a42xq
+TARGET_OTA_ASSERT_DEVICE := m23xq

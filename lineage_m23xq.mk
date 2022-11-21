@@ -15,7 +15,7 @@
 #
 
 # Inherit device configuration
-$(call inherit-product, device/samsung/a42xq/device.mk)
+$(call inherit-product, device/samsung/m32xq/device.mk)
 
 # Inherit from the 64 bit configuration
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
@@ -32,15 +32,19 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 # Boot animation
 TARGET_BOOTANIMATION_PRELOAD := true
 TARGET_BOOTANIMATION_TEXTURE_CACHE := true
-TARGET_SCREEN_HEIGHT := 1600
-TARGET_SCREEN_WIDTH := 720
+TARGET_SCREEN_HEIGHT := 2400
+TARGET_SCREEN_WIDTH := 1080
 
 ## Device identifier. This must come after all inclusions
-PRODUCT_NAME := lineage_a42xq
-PRODUCT_DEVICE := a42xq
+PRODUCT_NAME := lineage_m23xq
+PRODUCT_DEVICE := m23xq
 PRODUCT_BRAND := samsung
-PRODUCT_MODEL := SM-A426B
+PRODUCT_MODEL := SM-M326B
 PRODUCT_MANUFACTURER := samsung
 PRODUCT_GMS_CLIENTID_BASE := android-samsung
 
 PRODUCT_SHIPPING_API_LEVEL := 30
+
+# Fingerprint
+BUILD_FINGERPRINT := "samsung/m23xqxx/qssi:12/SP1A.210812.016/M236BXXU1AVH1:user/release-keys"
+PRIVATE_BUILD_DESC := "m23xqxx-user 12 SP1A.210812.016 M236BXXU1AVH1 release-keys"

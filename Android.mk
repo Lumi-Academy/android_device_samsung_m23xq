@@ -6,7 +6,7 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifeq ($(TARGET_DEVICE),a42xq)
+ifeq ($(TARGET_DEVICE),m23xq)
 
 subdir_makefiles=$(call first-makefiles-under,$(LOCAL_PATH))
 

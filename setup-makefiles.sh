@@ -7,7 +7,7 @@
 
 set -e
 
-DEVICE_COMMON=a42xq
+DEVICE_COMMON=m23xq
 VENDOR=samsung
 
 # Load extractutils and do some sanity checks
@@ -27,7 +27,7 @@ source "${HELPER}"
 setup_vendor "${DEVICE_COMMON}" "${VENDOR}" "${ANDROID_ROOT}" true
 
 # Warning headers and guards
-write_headers "a42xq"
+write_headers "m23xq"
 
 write_makefiles "${MY_DIR}/proprietary-files.txt" true
 
